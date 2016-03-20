@@ -33,11 +33,11 @@ Based on columns attribute "generateAndExecuteSQLquery" action will generate and
 * SELECT CompanyName,City,Country FROM Company
 
 Action "convertSQLresultToXML" will convert that result to XML which can be imported to Efecte WebAPI.
-You can find example of converted XML from file [SimpleCRM_company.xml!](SimpleCRM_company.xml)
+You can find example of converted XML from file [SimpleCRM_company.xml](SimpleCRM_company.xml)
 
 ## User in companies relation import
 To be able to create relations using WebAPI you need to know:
-* Relation directly (which card you will update and which one to refering).
+* Relation direction (which card you will updated and which one we are referring).
 * Unique value on for both card types.
 * Relation field.
 
@@ -58,5 +58,5 @@ Simple CRM database contains view "v_UserInCompany" which returns needed values 
 If your source application does not contain view like this you need either create it or add some custom logic to workflow which first converts data to correct format.
 
 
-Workflow "Example - SimpleCRM UserInCompany to Efecte" gets data from "v_UserInCompany" view, converts it to XML (you can see example on: [SimpleCRM_UserInCompany.xml!](SimpleCRM_UserInCompany.xml) and create references to Efecte using it.
+Workflow "Example - SimpleCRM UserInCompany to Efecte" gets data from "v_UserInCompany" view, converts it to XML (you can see example on: [SimpleCRM_UserInCompany.xml](SimpleCRM_UserInCompany.xml) and create references to Efecte using it.
 
