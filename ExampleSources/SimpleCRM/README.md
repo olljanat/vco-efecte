@@ -24,6 +24,7 @@ As for example here is "Example - SimpleCRM Companies to Efecte" workflow's attr
 "columns" attribute contains array of strings like these:
 
 ![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-Company-columns-attribute_map.PNG "Company table, columns attribute map")
+
 Strings contains two values which are separated using pipe "|" mark:
 * First value is SQL column name.
 * Second value is field code on Efecte.
@@ -53,6 +54,7 @@ On company template default unique value is company name:
 Simple CRM database contains view "v_UserInCompany" which returns needed values for us:
 
 ![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-UserInCompany_view.PNG "SQL view v_UserInCompany")
+
 If your source application does not contain view like this you need either create it or add some custom logic to workflow which first converts data to correct format.
 
 
