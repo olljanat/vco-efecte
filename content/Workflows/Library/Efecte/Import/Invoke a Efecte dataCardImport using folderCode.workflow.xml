@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item0" object-name="Workflow:name=generic" id="57c6a6fd-ba0d-401b-a605-5fc3b04e0665" version="1.1.0" api-version="6.0.0" allowed-operations="fve" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Invoke a Efecte dataCardImport using folderCode</display-name>
+
+    <description>Invokes a REST operation.</description>
+    <ref-types>(REST:RESTOperation)</ref-types>
+
+    <position x="160.0" y="50.0"/>
+
+    <input>
+        <param name="restOperation" type="REST:RESTOperation">
+            <description>Please, pick up REST operation with name "Efecte-dataCardImport-folderCode" to this</description>
+        </param>
+        <param name="updateDataCards" type="boolean">
+            <description>Update matched data cards</description>
+        </param>
+        <param name="createDataCards" type="boolean">
+            <description>Create non-matched data cards</description>
+        </param>
+        <param name="createStaticAttributes" type="boolean">
+            <description>Create new static values</description>
+        </param>
+        <param name="createEmptyReferences" type="boolean">
+            <description>Create non-matched references as empty data cards</description>
+        </param>
+        <param name="ignoreUniqueChecks" type="boolean">
+            <description>Ignore uniqueness check for data card fields</description>
+        </param>
+        <param name="folderCode" type="string">
+            <description>FolderCode for destination folder</description>
+        </param>
+        <param name="removeEmptyValues" type="boolean">
+            <description>Remove data cards values that are not denoted in XML with empty value element</description>
+        </param>
+        <param name="content" type="string">
+            <description>XML data to be imported to Efecte</description>
+        </param>
+    </input>
+
+    <output>
+        <param name="statusCode" type="number">
+            <description>Status code of the HTTP request</description>
+        </param>
+        <param name="contentLength" type="number">
+            <description>Length of the request response</description>
+        </param>
+        <param name="headers" type="Properties">
+            <description>Response headers</description>
+        </param>
+    </output>
+
+    <attrib name="errorCode" type="string" read-only="false">
+        <value encoded="n"/>
+    </attrib>
+    <attrib name="statusCodeAttribute" type="number" read-only="false"/>
+    <attrib name="contentType" type="string" read-only="false">
+        <value encoded="n">text/xml;charset=UTF-8</value>
+    </attrib>
+    <attrib name="contentAsString" type="string" read-only="false">
+        <value encoded="n">Response content as string</value>
+    </attrib>
+
+    <workflow-item name="item0" out-name="item3" catch-name="item2" throw-bind-name="errorCode" type="task">
+        <display-name>REST call</display-name>
+
+        <script encoded="false">
+var inParamtersValues = [param_0, param_1, param_2, param_3, param_4, param_5, param_6];
+var request = restOperation.createRequest(inParamtersValues, content);
+
+//set the request content type
+request.contentType = defaultContentType;
+System.log("Request: " + request);
+System.log("Request URL: " + request.fullUrl);
+
+var response = request.execute();
+System.log("Response: " + response);
+statusCode = response.statusCode;
+statusCodeAttribute = statusCode;
+System.log("Status code: " + statusCode);
+contentLength = response.contentLength;
+headers = response.getAllHeaders();
+contentAsString = response.contentAsString;
+System.log("Content as string: " + contentAsString);
+System.log("****Headers****");
+for each (var header in headers){
+	System.log(header.toString());
+}
+        </script>
+
+        <in-binding>
+            <bind name="content" type="string" export-name="content"/>
+            <bind name="param_0" type="boolean" export-name="updateDataCards"/>
+            <bind name="param_1" type="boolean" export-name="createDataCards"/>
+            <bind name="param_2" type="boolean" export-name="createStaticAttributes"/>
+            <bind name="param_3" type="boolean" export-name="createEmptyReferences"/>
+            <bind name="param_4" type="boolean" export-name="ignoreUniqueChecks"/>
+            <bind name="param_5" type="string" export-name="folderCode"/>
+            <bind name="param_6" type="boolean" export-name="removeEmptyValues"/>
+            <bind name="restOperation" type="REST:RESTOperation" export-name="restOperation"/>
+            <bind name="statusCodeAttribute" type="number" export-name="statusCodeAttribute"/>
+            <bind name="defaultContentType" type="string" export-name="contentType"/>
+        </in-binding>
+
+        <out-binding>
+            <bind name="statusCode" type="number" export-name="statusCode"/>
+            <bind name="contentLength" type="number" export-name="contentLength"/>
+            <bind name="headers" type="Properties" export-name="headers"/>
+            <bind name="param1" type="number" export-name="statusCode"/>
+            <bind name="contentAsString" type="string" export-name="contentAsString"/>
+        </out-binding>
+
+        <position x="120.0" y="100.0"/>
+    </workflow-item>
+
+    <workflow-item name="item1" type="end" end-mode="0">
+        <position x="165.0" y="299.95454545454544"/>
+    </workflow-item>
+
+    <workflow-item name="item2" throw-bind-name="errorCode" type="end" end-mode="1">
+        <position x="305.0" y="136.8181818181818"/>
+    </workflow-item>
+
+    <workflow-item name="item3" out-name="item4" type="custom-condition" alt-out-name="item2">
+        <display-name>Check status code</display-name>
+
+        <script encoded="false">
+if ( statusCodeAttribute &gt;= 400 ) {
+	throw "HTTPError: status code: " + statusCodeAttribute;
+} else {
+	return true;
+}
+        </script>
+
+        <in-binding>
+            <bind name="statusCodeAttribute" type="number" export-name="statusCodeAttribute"/>
+        </in-binding>
+
+        <position x="120.0" y="170.0"/>
+    </workflow-item>
+
+    <workflow-item name="item4" out-name="item1" type="custom-condition" alt-out-name="item5">
+        <display-name>Check WebAPI response</display-name>
+
+        <script encoded="false">
+var errorCode = "success";
+var document = XMLManager.fromString(contentAsString);
+if (!document) {
+  errorCode = "WebAPI responce was invalid XML Document";
+  throw errorCode;
+}
+
+// If responce XML does not contain "entity-import-report" node
+if (document.getElementsByTagName("entity-import-report").length == 0) {
+	throw "There was some error on import, please check logs";
+}
+        </script>
+
+        <in-binding>
+            <bind name="contentAsString" type="string" export-name="contentAsString"/>
+        </in-binding>
+
+        <position x="125.0" y="236.3181818181818"/>
+    </workflow-item>
+
+    <workflow-item name="item5" throw-bind-name="errorCode" type="end" end-mode="1">
+        <position x="304.5" y="236.3181818181818"/>
+    </workflow-item>
+
+    <presentation>
+        <p-step>
+            <title>Invoke a REST operation</title>
+            <p-group>
+                <title>Operation</title>
+                <desc>Specify the operation to be invoked.</desc>
+                <p-param name="restOperation">
+                    <desc>Please, pick up REST operation with name "Efecte-dataCardImport-folderCode" to this</desc>
+                    <p-qual kind="static" name="mandatory" type="boolean">true</p-qual>
+                    <p-qual name="contextualParameter" type="void"/>
+                </p-param>
+            </p-group>
+            <p-group>
+                <title>Input Parameters</title>
+                <desc>Specify the values of the operation input parameters. Those values will be used to generate the URL.</desc>
+                <p-qual kind="ognl" name="visible" type="boolean">#restOperation != null &amp;&amp; #restOperation.inParametersCount&gt;0</p-qual>
+                <p-param name="updateDataCards">
+                    <desc>Update matched data cards</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">true</p-qual>
+                </p-param>
+                <p-param name="createDataCards">
+                    <desc>Create non-matched data cards</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">true</p-qual>
+                </p-param>
+                <p-param name="createStaticAttributes">
+                    <desc>Create new static values</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">__NULL__</p-qual>
+                </p-param>
+                <p-param name="createEmptyReferences">
+                    <desc>Create non-matched references as empty data cards</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">__NULL__</p-qual>
+                </p-param>
+                <p-param name="ignoreUniqueChecks">
+                    <desc>Ignore uniqueness check for data card fields</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">__NULL__</p-qual>
+                </p-param>
+                <p-param name="folderCode">
+                    <desc>FolderCode for destination folder</desc>
+                    <p-qual kind="static" name="mandatory" type="boolean">true</p-qual>
+                </p-param>
+                <p-param name="removeEmptyValues">
+                    <desc>Remove data cards values that are not denoted in XML with empty value element</desc>
+                    <p-qual kind="static" name="defaultValue" type="boolean">__NULL__</p-qual>
+                </p-param>
+            </p-group>
+            <p-group>
+                <title>Input Content</title>
+                <desc>Specify the operation input content if required.</desc>
+                <p-qual kind="ognl" name="visible" type="boolean">#restOperation != null &amp;&amp; (#restOperation.method=="POST"||#restOperation.method=="PUT"||#restOperation.method=="DELETE"||#restOperation.method=="PATCH")</p-qual>
+                <p-param name="content">
+                    <desc>XML data to be imported to Efecte</desc>
+                    <p-qual kind="static" name="mandatory" type="boolean">false</p-qual>
+                    <p-qual name="textInput" type="void"/>
+                </p-param>
+            </p-group>
+        </p-step>
+    </presentation>
+</workflow>

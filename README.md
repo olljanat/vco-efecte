@@ -14,10 +14,10 @@ This can be used to create integrations between Efecte and other systems.
 # Usage
 * Add REST host using "Add a REST host" workflow.
 * Add REST operations using "Add Efecte REST Operations" workflow.
-* Create your own workflows based on examples on [vco-efecte-examples](https://github.com/olljanat/vco-efecte-examples) project.
+* Create your own workflows based on examples.
 
 ## Known issues
-* Only dataCardImport using FolderCode is currently tested.
+* Only dataCardImport using FolderCode REST opreation is currently tested.
 
 ## TODO
 * Invoke workflows for other REST operations.
@@ -34,8 +34,8 @@ Include Ant and OpenSSL binary paths to Windows PATH environment variable
 and openssl.cnf -file path to OPENSSL_CONF environment variable.
 
 ### Build:
- git clone https://github.com/olljanat/vco-efecte.git
- ant build
+* git clone https://github.com/olljanat/vco-efecte.git
+* ant build
 
 ### Install:
 Install using vCO client from inout folder
@@ -43,4 +43,4 @@ Install using vCO client from inout folder
 ### Exporting package back to sources:
 Export package using vCO client to inout folder
 Update sources using command:
- ant precommit
+* ant precommit

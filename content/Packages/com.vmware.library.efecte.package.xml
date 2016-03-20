@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package id="ff80808150f1d69e0151f1cb999c0c14">
+    <name>com.vmware.library.efecte</name>
+    <description>Module for Efecte (http://www.efecte.com) WebAPI</description>
+    <workflows>
+        <id-24cfb317-c17e-46b7-b310-de6b2fd5c734 path="Library/Efecte/Configuration/Add Efecte REST Operations.workflow.xml"/>
+        <id-2f9a41a2-429c-4142-abf2-cd34b1be6bfc path="Library/Efecte/Examples/Example - SimpleCRM Users to Efecte .workflow.xml"/>
+        <id-57c6a6fd-ba0d-401b-a605-5fc3b04e0665 path="Library/Efecte/Import/Invoke a Efecte dataCardImport using folderCode.workflow.xml"/>
+        <id-91d51c69-390a-4181-8404-847842281e06 path="Library/Efecte/Examples/Example - SimpleCRM Companies to Efecte .workflow.xml"/>
+        <id-b35ae352-d344-4ffc-8c3d-f174595cca31 path="Library/Efecte/Examples/Example - SimpleCRM UserInCompany to Efecte .workflow.xml"/>
+    </workflows>
+    <actions>
+        <id-28b901e7-6698-4e39-ac9e-c3c5da832ef4 path="com.vmware.library.efecte/generateAndExecuteSQLquery.action.xml"/>
+        <id-aacab82d-f3f2-41a3-856a-c4d8b5859ffc path="com.vmware.library.efecte/convertSQLresultToXML.action.xml"/>
+    </actions>
+    <configurations/>
+    <resources/>
+</package>

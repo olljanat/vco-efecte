@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="24cfb317-c17e-46b7-b310-de6b2fd5c734" version="0.1.1" api-version="6.0.0" allowed-operations="fve" restartMode="1" resumeFromFailedMode="0">
+    <display-name>Add Efecte REST Operations</display-name>
+
+    <description>
+Workflow to add a specified set of Rest Operations to a specified Efecte RESTHost. Done for consistency based on code and an idea from  http://www.vcoflow.co.uk/
+    </description>
+
+    <position x="100.0" y="50.0"/>
+
+    <input>
+        <param name="EfecteHost" type="REST:RESTHost">
+            <description>Efecte host</description>
+        </param>
+    </input>
+
+    <workflow-item name="item0" type="end" end-mode="0">
+        <position x="384.5" y="45.40909090909091"/>
+    </workflow-item>
+
+    <workflow-item name="item1" out-name="item0" type="task">
+        <display-name>Create Efecte Rest Operations</display-name>
+
+        <script encoded="false">
+var objProperties;
+    objProperties = new Properties();
+
+	//#######################################################################
+	// DataCardImport service using folderId
+	var strWebService = "/dataCardImport.ws";
+	strWebService += "?updateDataCards={updateDataCards}";
+	strWebService += "&amp;createDataCards={createDataCards}";
+	strWebService += "&amp;createStaticAttributes={createStaticAttributes}";
+	strWebService += "&amp;createEmptyReferences={createEmptyReferences}";
+	strWebService += "&amp;ignoreUniqueChecks={ignoreUniqueChecks}";
+	strWebService += "&amp;folderId={folderId}";
+	strWebService += "&amp;removeEmptyValues={removeEmptyValues}";
+	objProperties.put("post|Efecte-dataCardImport-folderId|text/xml",strWebService);
+	
+	// DataCardImport service using folderId with restrictUpdateToFolderId
+	var strWebService = "/dataCardImport.ws";
+	strWebService += "?updateDataCards={updateDataCards}";
+	strWebService += "&amp;createDataCards={createDataCards}";
+	strWebService += "&amp;createStaticAttributes={createStaticAttributes}";
+	strWebService += "&amp;createEmptyReferences={createEmptyReferences}";
+	strWebService += "&amp;ignoreUniqueChecks={ignoreUniqueChecks}";
+	strWebService += "&amp;restrictUpdateToFolderId={restrictUpdateToFolderId}";
+	strWebService += "&amp;folderId={folderId}";
+	strWebService += "&amp;removeEmptyValues={removeEmptyValues}";
+	objProperties.put("post|Efecte-dataCardImport-folderId-restrictUpdateToFolderId|text/xml",strWebService);
+
+	// DataCardImport service using folderCode
+	var strWebService = "/dataCardImport.ws";
+	strWebService += "?updateDataCards={updateDataCards}";
+	strWebService += "&amp;createDataCards={createDataCards}";
+	strWebService += "&amp;createStaticAttributes={createStaticAttributes}";
+	strWebService += "&amp;createEmptyReferences={createEmptyReferences}";
+	strWebService += "&amp;ignoreUniqueChecks={ignoreUniqueChecks}";
+	strWebService += "&amp;folderCode={folderCode}";
+	strWebService += "&amp;removeEmptyValues={removeEmptyValues}";
+	objProperties.put("post|Efecte-dataCardImport-folderCode|text/xml",strWebService);
+
+	// DataCardImport service using folderCode with restrictUpdateToFolderCode
+	var strWebService = "/dataCardImport.ws";
+	strWebService += "?updateDataCards={updateDataCards}";
+	strWebService += "&amp;createDataCards={createDataCards}";
+	strWebService += "&amp;createStaticAttributes={createStaticAttributes}";
+	strWebService += "&amp;createEmptyReferences={createEmptyReferences}";
+	strWebService += "&amp;ignoreUniqueChecks={ignoreUniqueChecks}";
+	strWebService += "&amp;restrictUpdateToFolderCode={restrictUpdateToFolderCode}";
+	strWebService += "&amp;folderCode={folderCode}";
+	strWebService += "&amp;removeEmptyValues={removeEmptyValues}";
+	objProperties.put("post|Efecte-dataCardImport-folderCode-restrictUpdateToFolderCode|text/xml",strWebService);
+	
+	//#######################################################################
+	// Delete service using IDs
+	objProperties.put("post|Efecte-delete-IDs|text/xml","/delete.ws?Ids={IDs}&amp;useTrashcan={useTrashcan}");
+	
+	// Delete service using Query
+	objProperties.put("post|Efecte-delete-Query|text/xml","/delete.ws?Query={Query}&amp;useTrashcan={useTrashcan}");
+		
+	//#######################################################################
+	// Search service
+	objProperties.put("get|Efecte-search|text/xml", "/search.ws?query={query}");
+
+	//#######################################################################
+	// FileMetadata service
+	objProperties.put("get|Efecte-fileMetadata|text/xml", "/fileMetadata.ws?entityId={entityId}");
+	
+	//#######################################################################
+	// FileDownload service
+	objProperties.put("get|Efecte-fileDownload|text/xml", "/fileDownload.ws?entityId={entityId}&amp;attributeId={attributeId}&amp;fileName={fileName}");
+	
+	//#######################################################################
+	// FileUpload service
+	objProperties.put("post|Efecte-fileUpload|multipart/form-data", "/fileUpload.ws?entityId={entityId}&amp;attributeId={attributeId}&amp;operationType={operationType}");
+	
+
+var arrKeys;
+    arrKeys = objProperties.keys;
+ 
+ System.log("Starting Loop\n");
+    for ( var i = 0; i &lt; arrKeys.length; i++ )
+    {
+        var strKey;
+            strKey = arrKeys[i];
+
+        var arrKey = new Array();
+            arrKey = strKey.split('|');
+
+ 		var strOperationName;
+			strOperationName = arrKey[1];
+
+        var strMethod;
+            strMethod = arrKey[0].toUpperCase();
+
+ 		var strContentType;
+			strContentType = arrKey[2];
+	
+        var strTemplateURL;
+            strTemplateURL = objProperties.get(strKey);
+			
+		var strTemplateURLSplit;
+			strTemplateURLSplit = strTemplateURL.split('/');
+		
+		var strTemplateURLSplit2;
+			strTemplateURLSplit2 = strTemplateURLSplit[1].split('?');
+
+        var objRESTOperation;
+            objRESTOperation = new RESTOperation(strOperationName);
+            objRESTOperation.method = strMethod;
+            objRESTOperation.urlTemplate = strTemplateURL;
+            objRESTOperation.defaultContentType = strContentType;
+ 			System.log("RESTOperation: "+ strOperationName);
+			System.log("\tMethod: "+ strMethod);
+			System.log("\turlTemplate: "+ strTemplateURL);
+	        objRESTOperation = EfecteHost.addOperation(objRESTOperation);
+			RESTHostManager.updateHost(EfecteHost);
+    }
+        </script>
+
+        <in-binding>
+            <bind name="EfecteHost" type="REST:RESTHost" export-name="EfecteHost"/>
+        </in-binding>
+
+        <out-binding/>
+
+        <position x="204.5" y="55.40909090909091"/>
+    </workflow-item>
+
+    <presentation>
+        <p-param name="EfecteHost">
+            <desc>Efecte host</desc>
+            <p-qual kind="static" name="mandatory" type="boolean">true</p-qual>
+        </p-param>
+    </presentation>
+</workflow>

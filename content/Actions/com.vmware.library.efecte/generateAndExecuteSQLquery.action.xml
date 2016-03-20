@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dunes-script-module name="generateAndExecuteSQLquery" result-type="Array/SQL:ActiveRecord" api-version="6.0.0" id="28b901e7-6698-4e39-ac9e-c3c5da832ef4" version="1.0.0" allowed-operations="vfe">
+    <description>Generates SQL query from Column names and queries data using it.</description>
+
+    <param n="database" t="SQL:Database">SQL database</param>
+
+    <param n="DatabaseColumns" t="Array/string">List of columns to be included to the SQL query</param>
+
+    <param n="TableOrView" t="string">Name of database table or view</param>
+
+    <param n="verboseMode" t="boolean"/>
+
+    <script encoded="false">
+var query = "SELECT ";
+for (i = 0; i &lt; DatabaseColumns.length; i++) {
+	var columnValueSplit = DatabaseColumns[i].split("|");
+	query += columnValueSplit[0];
+	
+	if (i &lt; DatabaseColumns.length - 1) {
+		query += ", ";
+	}
+}
+query += " FROM " + TableOrView;
+
+if (verboseMode)
+	System.log("VERBOSE: generateAndExecuteSQLquery - Executing SQL query " + query + " on database " + database.name );
+	
+resultRecords = database.readCustomQuery(query);
+return resultRecords;
+    </script>
+</dunes-script-module>
