@@ -1,6 +1,7 @@
 # Simple CRM
 This is very simple example database which contains own table for users and companies and table which connects users to companies.
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/SimpleCRM-database_structure.PNG "Database structure")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-database_structure.PNG "Database structure")
 
 This works with Efecte standard configuration.
 
@@ -16,11 +17,13 @@ This works with Efecte standard configuration.
 You must first add Companies and Users to Efecte before you can create references between them.
 
 As for example here is "Example - SimpleCRM Companies to Efecte" workflow's attributes:
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/SimpleCRM-workflow_attributes.PNG "Worklow attributes")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-workflow_attributes.PNG "Worklow attributes")
 
 
 "columns" attribute contains array of strings like these:
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/SimpleCRM-Company-columns-attribute_map.PNG "Company table, columns attribute map")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-Company-columns-attribute_map.PNG "Company table, columns attribute map")
 Strings contains two values which are separated using pipe "|" mark:
 * First value is SQL column name.
 * Second value is field code on Efecte.
@@ -38,13 +41,18 @@ To be able to create relations using WebAPI you need to know:
 * Relation field.
 
 On user template default unique value is email address:
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/Efecte_user_template.PNG "User template")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/Efecte_user_template.PNG "User template")
+
 
 On company template default unique value is company name:
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/Efecte_company_template.PNG "Company template")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/Efecte_company_template.PNG "Company template")
+
 
 Simple CRM database contains view "v_UserInCompany" which returns needed values for us:
-![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/Examples/SimpleCRM/SimpleCRM-UserInCompany_view.PNG "SQL view v_UserInCompany")
+
+![Alt text](https://raw.githubusercontent.com/olljanat/vco-efecte/master/ExampleSources/SimpleCRM/SimpleCRM-UserInCompany_view.PNG "SQL view v_UserInCompany")
 If your source application does not contain view like this you need either create it or add some custom logic to workflow which first converts data to correct format.
 
 
