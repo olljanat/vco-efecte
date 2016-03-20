@@ -34,8 +34,8 @@ Include Ant and OpenSSL binary paths to Windows PATH environment variable
 and openssl.cnf -file path to OPENSSL_CONF environment variable.
 
 ### Build:
-git clone https://github.com/olljanat/vco-netscaler-base.git
-ant build
+ git clone https://github.com/olljanat/vco-efecte.git
+ ant build
 
 ### Install:
 Install using vCO client from inout folder
@@ -43,4 +43,4 @@ Install using vCO client from inout folder
 ### Exporting package back to sources:
 Export package using vCO client to inout folder
 Update sources using command:
-ant precommit
+ ant precommit
