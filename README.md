@@ -16,6 +16,8 @@ This can be used to create integrations between Efecte and other systems.
 * Add REST operations using "Add Efecte REST Operations" workflow.
 * Create your own workflows based on examples.
 
+You can find examples from "ExampleSources" folder.
+
 ## Known issues
 * Only dataCardImport using FolderCode REST opreation is currently tested.
 

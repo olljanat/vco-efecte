@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityset>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>ClementDFenstermacher@superrito.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>AM/PM Camp</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>CarrieBDurham@dayrep.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Angel's</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>JessicaEFernandes@dayrep.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Foreman &amp; Clark</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>JustinMLewis@fleckens.hu</value>
+		</attribute>
+		<attribute code="company">
+			<value>Gantos</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>ThelmaDDavison@jourrapide.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Golden Joy</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>ArthurAJones@einrot.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Jitney Jungle</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>BenjaminSWatson@teleworm.us</value>
+		</attribute>
+		<attribute code="company">
+			<value>Landskip Yard Care</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>ThomasCWiley@armyspy.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Rainbow Records</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>JeanEPulliam@teleworm.us</value>
+		</attribute>
+		<attribute code="company">
+			<value>Rogers Food Stores</value>
+		</attribute>
+	</entity>
+	<entity>
+		<template code="person"/>
+		<attribute code="email">
+			<value>MarionWScales@jourrapide.com</value>
+		</attribute>
+		<attribute code="company">
+			<value>Town and Country Convenience Stores</value>
+		</attribute>
+	</entity>
+</entityset>

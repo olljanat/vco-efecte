@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entityset>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>AM/PM Camp</value>
+        </attribute>
+        <attribute code="city">
+            <value>Washington</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Angel's</value>
+        </attribute>
+        <attribute code="city">
+            <value>Hollywood</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Foreman &amp; Clark</value>
+        </attribute>
+        <attribute code="city">
+            <value>Los Angeles</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Gantos</value>
+        </attribute>
+        <attribute code="city">
+            <value>Hugo</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Golden Joy</value>
+        </attribute>
+        <attribute code="city">
+            <value>Gainesville</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Jitney Jungle</value>
+        </attribute>
+        <attribute code="city">
+            <value>Huntington</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Landskip Yard Care</value>
+        </attribute>
+        <attribute code="city">
+            <value>Oakland</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Rainbow Records</value>
+        </attribute>
+        <attribute code="city">
+            <value>La Place</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Rogers Food Stores</value>
+        </attribute>
+        <attribute code="city">
+            <value>Marlboro</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+    <entity>
+        <template code="company" />
+        <attribute code="company_name">
+            <value>Town and Country Convenience Stores</value>
+        </attribute>
+        <attribute code="city">
+            <value>Richwood</value>
+        </attribute>
+        <attribute code="country">
+            <value>United States</value>
+        </attribute>
+    </entity>
+</entityset>
