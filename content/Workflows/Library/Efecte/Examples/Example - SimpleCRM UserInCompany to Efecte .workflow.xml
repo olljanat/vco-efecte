@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="b35ae352-d344-4ffc-8c3d-f174595cca31" version="1.0.3" api-version="6.0.0" allowed-operations="fve" restartMode="1" resumeFromFailedMode="0">
+<workflow xmlns="http://vmware.com/vco/workflow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://vmware.com/vco/workflow http://vmware.com/vco/workflow/Workflow-v4.xsd" root-name="item1" object-name="workflow:name=generic" id="b35ae352-d344-4ffc-8c3d-f174595cca31" version="1.0.4" api-version="6.0.0" allowed-operations="fve" restartMode="1" resumeFromFailedMode="0">
     <display-name>Example - SimpleCRM UserInCompany to Efecte</display-name>
 
     <position x="25.0" y="45.90909090909091"/>
@@ -84,39 +84,6 @@ actionResult = System.getModule("com.vmware.library.efecte").generateAndExecuteS
         <position x="124.5" y="55.40909090909091"/>
     </workflow-item>
 
-    <workflow-item name="item3" out-name="item2" type="task" script-module="com.vmware.library.efecte/convertSQLresultToXML">
-        <display-name>convertSQLresultToXML</display-name>
-
-        <script encoded="false">
-//Auto generated script, cannot be modified !
-actionResult = System.getModule("com.vmware.library.efecte").convertSQLresultToXML(SQLqueryResult,DatabaseColumns,TableOrView,templateCode,verboseMode) ;
-        </script>
-
-        <in-binding>
-            <bind name="SQLqueryResult" type="Array/SQL:ActiveRecord" export-name="companies">
-                <description>SQL query result</description>
-            </bind>
-            <bind name="DatabaseColumns" type="Array/string" export-name="columns">
-                <description>List of columns to be included to the SQL query</description>
-            </bind>
-            <bind name="TableOrView" type="string" export-name="table">
-                <description>Name of database table or view</description>
-            </bind>
-            <bind name="templateCode" type="string" export-name="templateCode">
-                <description>Efecte import template</description>
-            </bind>
-            <bind name="verboseMode" type="boolean" export-name="verboseMode"/>
-        </in-binding>
-
-        <out-binding>
-            <bind name="actionResult" type="string" export-name="xml"/>
-        </out-binding>
-
-        <description>Convert SQL:ActiveRecord array to Efecte XML format.</description>
-
-        <position x="305.0" y="55.90909090909091"/>
-    </workflow-item>
-
     <workflow-item name="item2" out-name="item0" type="link" linked-workflow-id="57c6a6fd-ba0d-401b-a605-5fc3b04e0665">
         <display-name>Invoke a Efecte dataCardImport using folderCode</display-name>
 
@@ -165,6 +132,36 @@ actionResult = System.getModule("com.vmware.library.efecte").convertSQLresultToX
         <description>Invokes a REST operation.</description>
 
         <position x="445.0" y="55.90909090909091"/>
+    </workflow-item>
+
+    <workflow-item name="item3" out-name="item2" type="task" script-module="com.vmware.library.efecte/convertSQLresultToXML">
+        <display-name>convertSQLresultToXML</display-name>
+
+        <script encoded="false">
+//Auto generated script, cannot be modified !
+actionResult = System.getModule("com.vmware.library.efecte").convertSQLresultToXML(SQLqueryResult,DatabaseColumns,templateCode,verboseMode) ;
+        </script>
+
+        <in-binding>
+            <bind name="SQLqueryResult" type="Array/SQL:ActiveRecord" export-name="database">
+                <description>SQL query result</description>
+            </bind>
+            <bind name="DatabaseColumns" type="Array/string" export-name="columns">
+                <description>List of columns to be included to the SQL query</description>
+            </bind>
+            <bind name="templateCode" type="string" export-name="templateCode">
+                <description>Efecte import template</description>
+            </bind>
+            <bind name="verboseMode" type="boolean" export-name="verboseMode"/>
+        </in-binding>
+
+        <out-binding>
+            <bind name="actionResult" type="string" export-name="xml"/>
+        </out-binding>
+
+        <description>Convert SQL:ActiveRecord array to Efecte XML format.</description>
+
+        <position x="285.0" y="55.40909090909091"/>
     </workflow-item>
 
     <presentation/>

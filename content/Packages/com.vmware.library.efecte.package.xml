@@ -11,7 +11,7 @@
     </workflows>
     <actions>
         <id-28b901e7-6698-4e39-ac9e-c3c5da832ef4 path="com.vmware.library.efecte/generateAndExecuteSQLquery.action.xml"/>
-        <id-aacab82d-f3f2-41a3-856a-c4d8b5859ffc path="com.vmware.library.efecte/convertSQLresultToXML.action.xml"/>
+        <id-93833b88-2efa-44dc-a0c2-d15c507e9856 path="com.vmware.library.efecte/convertSQLresultToXML.action.xml"/>
     </actions>
     <configurations/>
     <resources/>

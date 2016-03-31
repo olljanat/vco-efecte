@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dunes-script-module name="convertSQLresultToXML" result-type="string" api-version="6.0.0" id="aacab82d-f3f2-41a3-856a-c4d8b5859ffc" version="1.0.0" allowed-operations="vfe">
+<dunes-script-module name="convertSQLresultToXML" result-type="string" api-version="6.0.0" id="93833b88-2efa-44dc-a0c2-d15c507e9856" version="1.1.1" allowed-operations="fve">
     <description>Convert SQL:ActiveRecord array to Efecte XML format.</description>
 
     <param n="SQLqueryResult" t="Array/SQL:ActiveRecord">SQL query result</param>
 
     <param n="DatabaseColumns" t="Array/string">List of columns to be included to the SQL query</param>
-
-    <param n="TableOrView" t="string">Name of database table or view</param>
 
     <param n="templateCode" t="string">Efecte import template</param>
 
@@ -28,8 +26,12 @@ for (i = 0; i &lt; SQLqueryResult.length; i++) {
 		var attributeNode = xml.createElement('attribute');
 		attributeNode.setAttribute('code',columnNameSplit[1]);
 		var valueNode = xml.createElement('value');
-		var value = xml.createTextNode(SQLqueryResult[i].getProperty(columnNameSplit[0]));
-		valueNode.appendChild(value);
+	
+		// Add value to valueNode if SQL column value is not NULL or empty
+		var value = SQLqueryResult[i].getProperty(columnNameSplit[0]);
+		if ((value != null) &amp;&amp; (value != '')) 
+			valueNode.appendChild(xml.createTextNode(value));
+			
 		attributeNode.appendChild(valueNode);
 		xmlEntity.appendChild(attributeNode);
 	}
