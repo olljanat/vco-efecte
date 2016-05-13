@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dunes-script-module name="convertSQLresultToXML" result-type="string" api-version="6.0.0" id="93833b88-2efa-44dc-a0c2-d15c507e9856" version="1.1.1" allowed-operations="fve">
+<dunes-script-module name="convertSQLresultToXML" result-type="string" api-version="6.0.0" id="bd128548-4d2f-4b1b-bd7b-831412cf041c" version="1.2.1" allowed-operations="fve">
     <description>Convert SQL:ActiveRecord array to Efecte XML format.</description>
 
     <param n="SQLqueryResult" t="Array/SQL:ActiveRecord">SQL query result</param>
@@ -8,7 +8,7 @@
 
     <param n="templateCode" t="string">Efecte import template</param>
 
-    <param n="verboseMode" t="boolean"/>
+    <param n="verboseMode" t="boolean">Print XML content to log if enabled</param>
 
     <script encoded="false">
 var xml = XMLManager.newDocument();
@@ -25,6 +25,8 @@ for (i = 0; i &lt; SQLqueryResult.length; i++) {
 		var columnNameSplit = DatabaseColumns[j].split("|");
 		var attributeNode = xml.createElement('attribute');
 		attributeNode.setAttribute('code',columnNameSplit[1]);
+		if (columnNameSplit[2] === 'append')
+			attributeNode.setAttribute('append','true');
 		var valueNode = xml.createElement('value');
 	
 		// Add value to valueNode if SQL column value is not NULL or empty
